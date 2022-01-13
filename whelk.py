@@ -6,6 +6,11 @@ from collections import OrderedDict
 from mako.template import Template
 import glob
 import sys
+import os
+
+
+def get_script_path():
+    return os.path.dirname(os.path.realpath(sys.argv[0]))
 
 
 def main():
@@ -30,6 +35,7 @@ def main():
         if not input_file_path.exists():
             print(f"Error! file {input_file_path} doesn't exist!")
             return
+
         output_file_folder = pathlib.Path(args.outputfolder)
         if not output_file_folder.exists():
             print(f"Error! folder {output_file_folder} doesn't exist!")
@@ -61,7 +67,9 @@ def main():
         parsed_toml = toml.loads(concatenated_comments, _dict=OrderedDict)
 
         # render to schelp using a mako template
-        schelp_template = Template(filename='template/schelptemplate.mako')
+        template_path = pathlib.Path(get_script_path()).joinpath("template/schelptemplate.mako")
+        # print(f"{str(template_path) = }")
+        schelp_template = Template(filename=str(template_path))
 
         # write result to file
         with open(path_to_output_file, "w") as f:
