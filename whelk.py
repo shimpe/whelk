@@ -7,6 +7,7 @@ from mako.template import Template
 import glob
 import sys
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--inputfile", help="path to file to process")
@@ -24,9 +25,8 @@ def main():
     # check arguments
     p = pathlib.Path(args.inputfile)
     input_files = p.parent.glob(p.name)
-    #print(f"{list(input_files) = }")
     for input_file_path in input_files:
-        print(f"{input_file_path = }")
+        # print(f"{input_file_path = }")
         if not input_file_path.exists():
             print(f"Error! file {input_file_path} doesn't exist!")
             return
@@ -37,28 +37,37 @@ def main():
 
         # calculate output file name from input file and output folder
         path_to_output_file = pathlib.Path(args.outputfolder).joinpath(input_file_path.name).with_suffix(".schelp")
-    #   print(f"{path_to_output_file = }")
+        # print(f"{path_to_output_file = }")
+
+        print(f"{str(input_file_path)} => {str(path_to_output_file)}")
+
         c = CommentTool()
+
+        # concatenate all comments that parse as valid toml into one long string
         concatenated_comments = ""
         with open(input_file_path, "r") as f:
             file_contents = f.read()
-            # concatenate all comment sections in file
-            # using only those that parse as valid toml
             comments = c.comments(file_contents)
             for comment in comments:
                 try:
-                    comment = comment[2:-2] # strip /* and */
+                    comment = comment[2:-2]  # strip /* and */
                     toml.loads(comment)
                     concatenated_comments = concatenated_comments + comment
                 except Exception as e:
-                    #print(f"{e}")
+                    # print(f"{e}")
                     pass  # ignore invalid comments
 
+        # parse the concatenated string as a toml document
         parsed_toml = toml.loads(concatenated_comments, _dict=OrderedDict)
-        schelptemplate = Template(filename='template/schelptemplate.mako')
+
+        # render to schelp using a mako template
+        schelp_template = Template(filename='template/schelptemplate.mako')
+
+        # write result to file
         with open(path_to_output_file, "w") as f:
-            print(f"writing to {path_to_output_file = }")
-            f.write(schelptemplate.render(data=parsed_toml))
+            # print(f"writing to {path_to_output_file = }")
+            f.write(schelp_template.render(data=parsed_toml))
+
 
 if __name__ == "__main__":
     main()
