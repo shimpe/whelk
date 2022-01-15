@@ -1,7 +1,18 @@
 # whelk
-tool to extract schelp files from supercollider documents
+***whelk*** is a python3 tool to extract schelp files (supercollide help files) from supercollider documents
+It can be used to generate documentation for quarks directly from the source code of the quarks.
 
-# usage:
+The current specification is very much in alpha state and while the general approach will not change, some minor details could be changed in the future.
+
+# depencencies
+whelk depends on a python3 implementation (https://github.com/uiri/toml) of the markup language toml (https://github.com/toml-lang/toml) with support for remembering the correct ordering of key-value pairs, and on the templating language mako (https://www.makotemplates.org/)
+
+```
+pip install toml
+pip install mako
+```
+
+# usage
 
 ## Get an overview of commmand line options
 ```
