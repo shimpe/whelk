@@ -50,7 +50,7 @@ ${data['classmethod'][method]['args'][argument]}
 % if 'returns' in data['classmethod'][method] and 'what' in data['classmethod'][method]['returns']:
 returns:: ${data['classmethod'][method]['returns']['what']}
 % else:
-returns:: the class itself
+returns:: the class ${data['general']['title']} itself
 
 % endif
 % endfor
@@ -78,7 +78,7 @@ ${data['method'][method]['args'][argument]}
 % if 'returns' in data['method'][method] and 'what' in data['method'][method]['returns']:
 returns:: ${data['method'][method]['returns']['what']}
 % else:
-returns:: the instance itself
+returns:: this instance of ${data['general']['title']}
 
 % endif
 % endfor
@@ -90,6 +90,6 @@ code::
 % if 'examples' in data and 'what' in data['examples']:
 ${data['examples']['what']}
 % else:
-(FIXME some example code)
+(FIXME add some example code)
 % endif
 ::
