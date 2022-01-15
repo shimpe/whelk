@@ -87,8 +87,10 @@ returns:: this instance of ${data['general']['title']}
 EXAMPLES::
 
 code::
-% if 'examples' in data and 'what' in data['examples']:
-${data['examples']['what']}
+% if 'examples' in data:
+% for key in data['examples']:
+${data['examples'][key]}
+% endfor
 % else:
 (FIXME add some example code)
 % endif
