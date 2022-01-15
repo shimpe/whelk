@@ -121,7 +121,8 @@ asLayout {
 	}
 ```
 ### Adding example code
-To embed an example in the schelp file you can add an [examples] section. The code is specified under the "what=" key.
+To embed an example in the schelp file you can add an [examples] section. The name of the key is not important.
+You can add multiple keys under the [examples] section and they will all be included in the schelp file.
 ```
 /*
 [examples]
