@@ -177,12 +177,21 @@ CmdPeriod.doOnce({
 '''
 */
 ```
-### strings vs multiline strings
+### basic and literal strings strings
 in TOML syntax, 
-* strings are enclosed in quotes 
+* basic strings are enclosed in quotes. In basic strings certain characters can be escaped with a backslash.
 ```"this is a string"```
-
-* multiline strings are enclosed in three single quotes
+* literal strings are enclosed in single quotes. In literal strings no escaping occurs. What you see is what you get. This also means that there is literally no way to print a single quote using a literal string.
+* ```'this is a literal string'```
+* basic multiline strings are enclosed in three double quotes. In basic multiline strings, certain characters can be escaped with backslash.
+```
+"""
+this is a 
+basic 
+multiline string
+"""
+```
+* literal multiline strings are enclosed in three single quotes. In literal multiline strings, again no escaping occurs, so in a multiline literal string it's not possible to print three successive single quotes.
 ```
 ''' this
 is a 
