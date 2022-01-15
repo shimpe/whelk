@@ -28,6 +28,8 @@ python3 whelk -i path/to/Classes/SomeFile.sc -o path/to/HelpSource/Classes/
 ## Process entire folder of files via wildcards
 
 The schelp files will have the same name as the .sc or .scd file it was extracted from, but with extension .schelp
+Note that if you use wildcards in a command line shell like bash, you need to include the path in quotes "" to avoid
+that the shell already expands the wildcard.
 
 ```
 python3 whelk.py -i "path/to/Classes/*.sc" -o path/to/HelpSource/Classes/
