@@ -181,9 +181,9 @@ CmdPeriod.doOnce({
 ### basic and literal strings strings
 in TOML syntax, 
 * basic strings are enclosed in quotes. In basic strings certain characters can be escaped with a backslash.
-```"this is a string"```
+```"this is a string \n with an embedded newline"```
 * literal strings are enclosed in single quotes. In literal strings no escaping occurs. What you see is what you get. This also means that there is literally no way to print a single quote using a literal string.
-* ```'this is a literal string'```
+```'this is a literal string \n and despite first appearance no newline is embedded'```
 * basic multiline strings are enclosed in three double quotes. In basic multiline strings, certain characters can be escaped with backslash.
 ```
 """
