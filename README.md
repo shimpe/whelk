@@ -20,7 +20,7 @@ python3 whelk.py -h
 ```
 ## Process single file 
 
-The schelp file will have the same name as the .sc or .scd file you pass to -i
+The schelp file will have the same name (but with .schelp extension) as the .sc or .scd file you pass to -i
 ```
 python3 whelk -i path/to/Classes/SomeFile.sc -o path/to/HelpSource/Classes/
 ```
