@@ -21,6 +21,8 @@ python3 whelk.py -h
 ## Process single file 
 
 The schelp file will have the same name (but with .schelp extension) as the .sc or .scd file you pass to -i
+Note that the output folder should exist already.
+
 ```
 python3 whelk -i path/to/Classes/SomeFile.sc -o path/to/HelpSource/Classes/
 ```
@@ -28,11 +30,10 @@ python3 whelk -i path/to/Classes/SomeFile.sc -o path/to/HelpSource/Classes/
 ## Process entire folder of files via wildcards
 
 The schelp files will have the same name as the .sc or .scd file it was extracted from, but with extension .schelp
-Note that if you use wildcards in a command line shell like bash, you need to include the path in quotes "" to avoid
-that the shell already expands the wildcard.
+A ~ character will be expanded to the user folder. The output folder should exist already.
 
 ```
-python3 whelk.py -i "path/to/Classes/*.sc" -o path/to/HelpSource/Classes/
+python3 whelk.py -i path/to/Classes/*.sc -o path/to/HelpSource/Classes/
 ```
 
 ## Some examples to see the syntax

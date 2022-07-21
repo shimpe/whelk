@@ -15,7 +15,7 @@ def get_script_path():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--inputfile", help="path to file to process")
+    parser.add_argument("-i", "--inputfile", help="path to file to process", nargs='+')
     parser.add_argument("-o", "--outputfolder", help="path to schelp file folder")
     args = parser.parse_args()
 
@@ -24,25 +24,33 @@ def main():
         sys.exit(1)
 
     if not args.outputfolder:
-        print("Error. Must specify an output folder!")
+        print("Error. Must specify an existing output folder!")
         sys.exit(2)
 
     # check arguments
-    p = pathlib.Path(args.inputfile)
-    input_files = p.parent.glob(p.name)
+    input_files = []
+    for file in args.inputfile:
+        file = os.path.expanduser(file)
+        escaped = glob.escape(file)
+        if escaped != file:
+            globbed = [pathlib.Path(p) for p in glob.glob(file)]
+            input_files.extend(globbed)
+        else:
+            input_files.append(pathlib.Path(file))
+
+    output_file_folder = pathlib.Path(os.path.expanduser(args.outputfolder))
+    if not output_file_folder.exists():
+        print(f"Error! folder {output_file_folder} doesn't exist!")
+        return
+
     for input_file_path in input_files:
         # print(f"{input_file_path = }")
         if not input_file_path.exists():
             print(f"Error! file {input_file_path} doesn't exist!")
             return
 
-        output_file_folder = pathlib.Path(args.outputfolder)
-        if not output_file_folder.exists():
-            print(f"Error! folder {output_file_folder} doesn't exist!")
-            return
-
         # calculate output file name from input file and output folder
-        path_to_output_file = pathlib.Path(args.outputfolder).joinpath(input_file_path.name).with_suffix(".schelp")
+        path_to_output_file = output_file_folder.joinpath(input_file_path.name).with_suffix(".schelp")
         # print(f"{path_to_output_file = }")
 
         print(f"{str(input_file_path)} => {str(path_to_output_file)}")
