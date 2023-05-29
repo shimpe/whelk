@@ -36,6 +36,14 @@ A ~ character will be expanded to the user folder. The output folder should exis
 python3 whelk.py -i path/to/Classes/*.sc -o path/to/HelpSource/Classes/
 ```
 
+## Process multiple folders of files via wildcards
+
+All .schelp files need to end up in the same folder.
+
+```
+python3 whelk.py -i path/to/Classes/*.sc path/to/Classes/tests/*.sc -o path/to/HelpSource/Classes/
+```
+
 ## Some examples to see the syntax
 
 ### Setting up the general properties
