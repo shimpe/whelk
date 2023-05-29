@@ -3,6 +3,7 @@
 It can be used to generate documentation for quarks directly from the source code of the quarks.
 
 The current specification is very much in alpha state and while the general approach will not change, some minor details could be changed in the future.
+Note: whelk does not check for syntax errors, so double check the generated documentation for any unexpected problems.
 
 # dependencies
 whelk depends on a python3 implementation (https://github.com/uiri/toml) of the markup language TOML (https://github.com/toml-lang/toml) with support for remembering the correct ordering of key-value pairs, and on the templating language mako (https://www.makotemplates.org/)
