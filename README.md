@@ -1,3 +1,5 @@
+![logo](https://github.com/shimpe/whelk/blob/main/image/whelk.png?raw=true)
+
 # whelk
 ***whelk*** is a python3 tool to extract schelp files (supercollider help files) from supercollider documents.
 It can be used to generate documentation for quarks directly from the source code of the quarks.
