@@ -17,6 +17,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--inputfile", help="path to file to process", nargs='+')
     parser.add_argument("-o", "--outputfolder", help="path to schelp file folder")
+    parser.add_argument("-v", "--verbose", help="print strings which do not parse as valid toml (generates a lot of ouput!)", action="store_true")
     args = parser.parse_args()
 
     if not args.inputfile:
@@ -68,7 +69,9 @@ def main():
                     toml.loads(comment)
                     concatenated_comments = concatenated_comments + comment
                 except Exception as e:
-                    # print(f"{e}")
+                    if args.verbose:
+                        print(f"{e}")
+                        print(comment)
                     pass  # ignore invalid comments
 
         # parse the concatenated string as a toml document
@@ -78,6 +81,11 @@ def main():
         template_path = pathlib.Path(get_script_path()).joinpath("template/schelptemplate.mako")
         # print(f"{str(template_path) = }")
         schelp_template = Template(filename=str(template_path))
+
+        try:
+            print(parsed_toml['examples']['what'])
+        except:
+            pass
 
         # write result to file
         with open(path_to_output_file, "w") as f:
