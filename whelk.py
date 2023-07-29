@@ -82,11 +82,6 @@ def main():
         # print(f"{str(template_path) = }")
         schelp_template = Template(filename=str(template_path))
 
-        try:
-            print(parsed_toml['examples']['what'])
-        except:
-            pass
-
         # write result to file
         with open(path_to_output_file, "w") as f:
             # print(f"writing to {path_to_output_file = }")
