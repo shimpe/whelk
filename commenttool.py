@@ -3,20 +3,8 @@ import re
 
 class CommentTool(object):
     def __init__(self):
-        def q(c):
-            """Returns a regular expression that matches a region
-               delimited by c, inside which c may be escaped with
-               a backslash.
-            """
-            return r"%s(\\.|[^%s])*%s" % (c,c,c)
-
-        self.singleQuotedStringPattern = q('"')
-        self.doubleQuotedStringPattern = q("'")
         self.cCommentPattern = r"/\*.*?\*/"
-        self.rx = re.compile("|".join([self.singleQuotedStringPattern,
-                                       self.doubleQuotedStringPattern,
-                                       self.cCommentPattern]),
-                             re.DOTALL)
+        self.rx = re.compile(self.cCommentPattern, re.DOTALL)
 
     def replace(self, x):
         y = x.group(0)
