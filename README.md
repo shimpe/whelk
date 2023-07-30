@@ -47,6 +47,18 @@ All .schelp files need to end up in the same folder.
 python3 whelk.py -i path/to/Classes/*.sc path/to/Classes/tests/*.sc -o path/to/HelpSource/Classes/
 ```
 
+## Examining problems
+Note if you generated new .schelp files, they will not yet be indexed by the help system. You can force a reindexation of the docs by calling
+```smalltalk
+SCDoc.indexAllDocuments
+```
+in scide.
+
+To check for problems with the embedded documentation, there are a few things you can do:
+1. If you pass the option --verbose to whelk, it will print to the terminal all comments that it couldn't parse as valid toml. You can then judge if you intended those comments to be part of the documentation or not.
+2. After generating the documentation in .schelp format, try to load it in scide and watch the post window for errors.
+3. After generating the documentation in .schelp format, try to load it in scide and look in the help text for red flags, like methods which are listed as undocumented whereas you remember adding docs for them, or missing code examples which you are sure you added.
+
 ## Some examples to see the syntax
 
 ### Setting up the general properties
